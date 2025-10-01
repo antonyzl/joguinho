@@ -23,8 +23,8 @@ h1, p {
 
 #game-wrapper {
   position: relative;
-  width: 90vw;
-  height: 70vh;
+  width: 80vw;
+  height: 60vh;
   background-image: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1920&q=80');
   background-size: cover;
   background-position: center;
@@ -42,8 +42,8 @@ h1, p {
 }
 
 #player, .enemy, .item {
-  width: 60px; /* Ajuste a largura das imagens */
-  height: 60px; /* Ajuste a altura das imagens */
+  width: 60px;
+  height: 60px;
   position: absolute;
 }
 
@@ -76,4 +76,3 @@ button:hover {
   font-weight: bold;
   margin-bottom: 10px;
 }
-
