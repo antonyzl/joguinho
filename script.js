@@ -1,4 +1,3 @@
-// Seleção de elementos
 const player = document.getElementById("player");
 const scoreDisplay = document.getElementById("score");
 const enemies = document.querySelectorAll(".enemy");
@@ -6,7 +5,7 @@ const items = document.querySelectorAll(".item");
 const startBtn = document.getElementById('startBtn');
 const reiniciarBtn = document.getElementById('reiniciarBtn');
 
-// Variáveis do jogo
+
 let posX = 50;
 let posY = 50;
 let score = 0;
@@ -15,7 +14,7 @@ const speed = 10;
 const containerWidth = document.getElementById("game-container").clientWidth;
 const containerHeight = document.getElementById("game-container").clientHeight;
 
-// Função de posicionamento dos elementos no início do jogo
+
 function positionElements() {
   enemies.forEach(enemy => {
     enemy.style.left = Math.random() * (containerWidth - 60) + "px";
@@ -28,7 +27,7 @@ function positionElements() {
   });
 }
 
-// Função para mover o jogador
+
 function movePlayer(e) {
   if (gameOver) return;
 
@@ -54,7 +53,6 @@ function movePlayer(e) {
       break;
   }
 
-  // Limites do movimento
   newX = Math.max(0, Math.min(containerWidth - player.clientWidth, newX));
   newY = Math.max(0, Math.min(containerHeight - player.clientHeight, newY));
 
@@ -66,7 +64,7 @@ function movePlayer(e) {
   checkCollisionWithItems();
 }
 
-// Função para verificar colisões
+
 function isColliding(a, b) {
   const r1 = a.getBoundingClientRect();
   const r2 = b.getBoundingClientRect();
@@ -78,7 +76,7 @@ function isColliding(a, b) {
   );
 }
 
-// Função para verificar colisões com os itens
+
 function checkCollisionWithItems() {
   items.forEach(item => {
     if (item.style.display !== "none" && isColliding(player, item)) {
@@ -89,7 +87,7 @@ function checkCollisionWithItems() {
   });
 }
 
-// Função para mover os inimigos (movimento básico)
+
 function moveEnemies() {
   if (gameOver) return;
 
@@ -97,11 +95,11 @@ function moveEnemies() {
     let enemyPosX = enemy.offsetLeft;
     let enemyPosY = enemy.offsetTop;
 
-    // Movimentação simples para os inimigos
+    
     enemy.style.left = enemyPosX + Math.sin(enemyPosY) * 5 + 'px';
     enemy.style.top = enemyPosY + Math.cos(enemyPosX) * 5 + 'px';
 
-    // Colisão com o jogador
+    
     if (isColliding(player, enemy)) {
       alert(`☠️ Você foi pego! Fim de jogo.\nPontuação: ${score}`);
       gameOver = true;
@@ -109,7 +107,7 @@ function moveEnemies() {
   });
 }
 
-// Função para reiniciar o jogo
+
 function reiniciarJogo() {
   score = 0;
   scoreDisplay.textContent = score;
@@ -119,7 +117,7 @@ function reiniciarJogo() {
   player.style.top = "50px";
 }
 
-// Função para iniciar o jogo
+
 function iniciarJogo() {
   positionElements();
   score = 0;
@@ -127,10 +125,10 @@ function iniciarJogo() {
   gameOver = false;
 }
 
-// Eventos
+
 document.addEventListener("keydown", movePlayer);
 startBtn.addEventListener('click', iniciarJogo);
 reiniciarBtn.addEventListener('click', reiniciarJogo);
 
-// Atualização contínua dos inimigos
+
 setInterval(moveEnemies, 100);
